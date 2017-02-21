@@ -93,8 +93,8 @@ public class TouchManagement : MonoBehaviour {
         }
     }
 
-    public void SendMoneyToPlayer() {
-        manager.money += ((int)manager.difference.TotalSeconds * 2);
+    public void SendMoneyToPlayer() { 
+        manager.money += ((int)manager.difference.TotalSeconds * manager.multiplier);
     }
 
     public void ShowBuildScreen() {

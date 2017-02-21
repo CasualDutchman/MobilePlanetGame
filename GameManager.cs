@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour {
     DateTime currentDate;
     public TimeSpan difference;
 
+    public float multiplier;
+
     void FixedUpdate() {
         //money += moneyPerSecond * Time.fixedDeltaTime;
         PlayerPrefs.SetFloat("Money", money);
@@ -112,7 +114,13 @@ public class GameManager : MonoBehaviour {
             DateTime oldDate = DateTime.FromBinary(temp);
 
             difference = currentDate.Subtract(oldDate);
-            print("Seconds difference: " + Mathf.FloorToInt((float)difference.TotalSeconds));
+
+            foreach (Machine mach in currentPlanet.machines) {
+                if (mach is MachineFuel) {
+                    MachineFuel machine = (MachineFuel)mach;
+                    multiplier += machine.refineryLevel;
+                }
+            }
         }
 
     }

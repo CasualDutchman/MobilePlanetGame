@@ -9,9 +9,10 @@ public class UITimeAway : MonoBehaviour {
     TimeSpan difference;
 
 	void Start () {
-        difference = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().difference;
+        GameManager manager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        difference = manager.difference;
         timeAwayText.text = difference.Days + "d:" + difference.Hours + "h:" + difference.Minutes + "m:" + difference.Seconds + "s";
-        earningText.text = "Sec * 2 = " + ((int)difference.TotalSeconds * 2);
+        earningText.text = "Sec * " + manager.multiplier + " = " + ((int)difference.TotalSeconds * manager.multiplier);
     }
 	
 	void Update () {
